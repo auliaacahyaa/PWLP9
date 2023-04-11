@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\Kelas;
 
 class MahasiswaController extends Controller
 {
@@ -12,18 +13,12 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->has('search')) {
-            $mahasiswa = Mahasiswa::where('nama', 'LIKE', '%' . request('search') . '%') ->paginate(5);
-            return view('mahasiswa.index', ['mahasiswa' => $mahasiswa]);
-        }else{
-            //fungsi eloquent menampilkan data menggunakan pagination
-            // $mahasiswa = Mahasiswa::all(); // Mengambil semua isi tabel
-            $mahasiswa = Mahasiswa::orderBy('Nim', 'desc')->paginate(5);
-            return view('mahasiswa.index', compact('mahasiswa'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);   
-        }
+        // $user = Auth::user();
+        $mahasiswa = Mahasiswa::paginate(5);
+        return view('mahasiswa.index', compact('mahasiswa','user'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
