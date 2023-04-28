@@ -17,7 +17,7 @@ class MahasiswaController extends Controller
     {
         // $user = Auth::user();
         $mahasiswa = Mahasiswa::paginate(5);
-        return view('mahasiswa.index', compact('mahasiswa','user'))
+        return view('mahasiswa.index', compact('mahasiswa'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,7 +28,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa.create');
+        $kelas = Kelas::all(); //mendapatkan data dari tabel kelas
+        return view('mahasiswa.create',['kelas' => $kelas]);
     }
 
     /**
@@ -51,8 +52,20 @@ class MahasiswaController extends Controller
         ]);
         
         //fungsi eloquent untuk menambah data
-        Mahasiswa::create($request->all());
+        $mahasiswa= new Mahasiswa;
+        $mahasiswa->nim=$request->get('nim');
+        $mahasiswa->nim=$request->get('nama');
+        $mahasiswa->nim=$request->get('jurusan');
+        $mahasiswa->nim=$request->get('no_hp');
+        $mahasiswa->save();
         
+        //fungsi eloquent untuk menambah data dengan relasi belongs to
+        $kelas = new Kelas;
+        $kelas->id = $request->get('kelas');
+
+        $mahasiswa->kelas()->associate($kelas);
+        $mahasiswa->save();
+
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Ditambahkan');
     }

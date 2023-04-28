@@ -38,7 +38,8 @@
 
         <td>{{ $Mahasiswa->Nim }}</td>
         <td>{{ $Mahasiswa->Nama }}</td>
-        <td>{{ $Mahasiswa->Kelas }}</td>
+        <td>{{ $Mahasiswa->Kelas->nama_kelas }}</td>
+        <!-- <td>{{ $Mahasiswa->prodi }}</td> -->
         <td>{{ $Mahasiswa->Jurusan }}</td>
         <td>{{ $Mahasiswa->No_Handphone }}</td>
     <td>
@@ -53,5 +54,8 @@
     </tr>
     @endforeach
  </table>
+<!-- <div>
+    {!! $mahasiswa->withQueryString()->links('pagination::bootstrap-5') !!}
+</div> -->
 {{ $mahasiswa->links() }}
 @endsection
