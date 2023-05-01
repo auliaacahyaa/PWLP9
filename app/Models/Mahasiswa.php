@@ -20,7 +20,7 @@ class Mahasiswa extends Model
         'Nim',
         'Nama',
         'Tanggal_Lahir',
-        'Kelas',
+        'kelas_id',
         'Jurusan',
         'No_Handphone',
         'Email',

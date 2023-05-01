@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaController extends Controller
 {
@@ -40,12 +41,12 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //melakukan valNimasi data
+        //melakukan validasi data
         $request->validate([
             'Nim' => 'required',
             'Nama' => 'required',
             'Tanggal_Lahir' => 'required',
-            'Kelas' => 'required',
+            'kelas' => 'required',
             'Jurusan' => 'required',
             'No_Handphone' => 'required',
             'Email' => 'required',
@@ -53,10 +54,12 @@ class MahasiswaController extends Controller
         
         //fungsi eloquent untuk menambah data
         $mahasiswa= new Mahasiswa;
-        $mahasiswa->nim=$request->get('nim');
-        $mahasiswa->nim=$request->get('nama');
-        $mahasiswa->nim=$request->get('jurusan');
-        $mahasiswa->nim=$request->get('no_hp');
+        $mahasiswa->Nim=$request->get('Nim');
+        $mahasiswa->Nama=$request->get('Nama');
+        $mahasiswa->Tanggal_Lahir=$request->get('Tanggal_Lahir');
+        $mahasiswa->Jurusan=$request->get('Jurusan');
+        $mahasiswa->No_Handphone=$request->get('No_Handphone');
+        $mahasiswa->Email=$request->get('Email');
         $mahasiswa->save();
         
         //fungsi eloquent untuk menambah data dengan relasi belongs to
@@ -93,7 +96,8 @@ class MahasiswaController extends Controller
     {
         //menampilkan detail data dengan menemukan berdasarkan Nim Mahasiswa untuk diedit
         $Mahasiswa = Mahasiswa::find($Nim);
-        return view('mahasiswa.edit', compact('Mahasiswa'));
+        $kelas = Kelas::all();
+        return view('mahasiswa.edit', compact('Mahasiswa','kelas'));
     }
 
     /**
@@ -103,21 +107,34 @@ class MahasiswaController extends Controller
      * @param  int  $Nim
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $Nim)
+    public function update(Request $request, $nim)
     {
         //melakukan validasi data
             $request->validate([
                 'Nim' => 'required',
                 'Nama' => 'required',
                 'Tanggal_Lahir' => 'required',
-                'Kelas' => 'required',
+                'kelas' => 'required',
                 'Jurusan' => 'required',
                 'No_Handphone' => 'required',
                 'Email' => 'required',
             ]);
    
         //fungsi eloquent untuk mengupdate data inputan kita
-            Mahasiswa::find($Nim)->update($request->all());
+        $mahasiswas=Mahasiswa::with('kelas')->where('Nim',$Nim)->first();
+        $mahasiswa->Nim=$request->get('Nim');
+        $mahasiswa->Nama=$request->get('Nama');
+        $mahasiswa->Tanggal_Lahir=$request->get('Tanggal_Lahir');
+        $mahasiswa->Jurusan=$request->get('Jurusan');
+        $mahasiswa->No_Handphone=$request->get('No_Handphone');
+        $mahasiswa->Email=$request->get('Email');
+        $mahasiswa->save();
+
+        $kelas = new Kelas;
+        $kelas->id = $request->get('kelas');
+            
+        $mahasiswa->kelas()->associate($kelas);
+        $mahasiswa->save();
    
         //jika data berhasil diupdate, akan kembali ke halaman utama
             return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Diupdate');

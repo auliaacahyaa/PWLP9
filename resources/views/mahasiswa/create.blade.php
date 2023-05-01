@@ -33,7 +33,7 @@
                     <input type="Nama" name="Nama" class="formcontrol" id="Nama" aria-describedby="Nama" >
                 </div>
                 <div class="form-group">
-                    <label for="Nama">Kelas</label>
+                    <label for="kelas">Kelas</label>
                     <select name ="kelas" class="form-control">
                         @foreach ($kelas as $Kelas)
                         <option value="{{$Kelas->id}}">{{$Kelas->nama_kelas}}</option>
@@ -44,10 +44,10 @@
                     <label for="Tanggal_Lahir">Tanggal Lahir</label>
                     <input type="date" name="Tanggal_Lahir" class="formcontrol" id="Tanggal_Lahir" aria-describedby="Tanggal_Lahir" >
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="Kelas">Kelas</label>
                     <input type="Kelas" name="Kelas" class="formcontrol" id="Kelas" aria-describedby="password" >
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="Jurusan">Jurusan</label>
                     <input type="Jurusan" name="Jurusan" class="formcontrol" id="Jurusan" aria-describedby="Jurusan" >
