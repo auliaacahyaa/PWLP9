@@ -27,15 +27,15 @@
         @method('PUT')
         <div class="form-group">
             <label for="Nim">Nim</label>
-            <input type="text" name="Nim" class="formcontrol" id="Nim" aria-describedby="Nim" >
+            <input type="text" name="Nim" class="formcontrol" id="Nim" value="{{ $Mahasiswa->Nim }}" ariadescribedby="Nim" >
         </div>
         <div class="form-group">
             <label for="Nama">Nama</label>
-            <input type="Nama" name="Nama" class="formcontrol" id="Nama" aria-describedby="Nama" >
+            <input type="Nama" name="Nama" class="formcontrol" id="Nama" value="{{ $Mahasiswa->Nama }}" ariadescribedby="Nama" >
         </div>
         <div class="form-group">
             <label for="Tanggal_Lahir">Tanggal Lahir</label>
-            <input type="date" name="Tanggal_Lahir" class="formcontrol" id="Tanggal_Lahir" aria-describedby="Tanggal_Lahir" >
+            <input type="date" name="Tanggal_Lahir" class="formcontrol" id="Tanggal_Lahir" value="{{ $Mahasiswa->Tanggal_Lahir }}" ariadescribedby="Tanggal_Lahir" >
         </div>
         <!-- <div class="form-group">
             <label for="Kelas">Kelas</label>
@@ -51,15 +51,15 @@
         </div>
         <div class="form-group">
             <label for="Jurusan">Jurusan</label>
-            <input type="Jurusan" name="Jurusan" class="formcontrol" id="Jurusan" aria-describedby="Jurusan" >
+            <input type="Jurusan" name="Jurusan" class="formcontrol" id="Jurusan" value="{{ $Mahasiswa->Jurusan }}" ariadescribedby="Jurusan" >
         </div>
         <div class="form-group">
             <label for="No_Handphone">No_Handphone</label>
-            <input type="No_Handphone" name="No_Handphone" class="formcontrol" id="No_Handphone" aria-describedby="No_Handphone" >
+            <input type="No_Handphone" name="No_Handphone" class="formcontrol" id="No_Handphone" value="{{ $Mahasiswa->No_Handphone }}" ariadescribedby="No_Handphone" >
         </div>
         <div class="form-group">
             <label for="Email">Email</label>
-            <input type="Email" name="Email" class="formcontrol" id="Email" aria-describedby="Email" >
+            <input type="Email" name="Email" class="formcontrol" id="Email" value="{{ $Mahasiswa->Email }}" ariadescribedby="Email" >
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>

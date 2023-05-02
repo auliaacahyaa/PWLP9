@@ -60,7 +60,7 @@ class MahasiswaController extends Controller
         $mahasiswa->Jurusan=$request->get('Jurusan');
         $mahasiswa->No_Handphone=$request->get('No_Handphone');
         $mahasiswa->Email=$request->get('Email');
-        $mahasiswa->save();
+        // $mahasiswa->save();
         
         //fungsi eloquent untuk menambah data dengan relasi belongs to
         $kelas = new Kelas;
@@ -107,7 +107,7 @@ class MahasiswaController extends Controller
      * @param  int  $Nim
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $nim)
+    public function update(Request $request, $Nim)
     {
         //melakukan validasi data
             $request->validate([
@@ -121,7 +121,7 @@ class MahasiswaController extends Controller
             ]);
    
         //fungsi eloquent untuk mengupdate data inputan kita
-        $mahasiswas=Mahasiswa::with('kelas')->where('Nim',$Nim)->first();
+        $mahasiswa=Mahasiswa::with('kelas')->where('Nim',$Nim)->first();
         $mahasiswa->Nim=$request->get('Nim');
         $mahasiswa->Nama=$request->get('Nama');
         $mahasiswa->Tanggal_Lahir=$request->get('Tanggal_Lahir');
@@ -151,5 +151,11 @@ class MahasiswaController extends Controller
         //fungsi eloquent untuk menghapus data
             Mahasiswa::find($Nim)->delete();
             return redirect()->route('mahasiswa.index')-> with('success', 'Mahasiswa Berhasil Dihapus');
+    }
+
+    public function nilai($Nim)
+    {
+        $Mahasiswa = Mahasiswa::find($Nim);
+        return view('mahasiswa.nilai', compact('Mahasiswa'));
     }
 }

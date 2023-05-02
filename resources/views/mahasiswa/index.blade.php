@@ -7,8 +7,7 @@
             </div>
             <nav class="navbar navbar-light bg-light">
                 <form method="get" action="{{ route('mahasiswa.index') }}" class="form-inline">
-                    <input id="search" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search"
-                    value="{{ request('search') }}">
+                    <input id="search" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search" value="{{ request('search') }}">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </nav>
@@ -45,6 +44,7 @@
     <form action="{{ route('mahasiswa.destroy',$Mahasiswa->Nim) }}" method="POST">
             <a class="btn btn-info" href="{{ route('mahasiswa.show',$Mahasiswa->Nim) }}">Show</a>
             <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$Mahasiswa->Nim) }}">Edit</a>
+            <a class="btn btn-success" href="mahasiswas/nilai/{{$Mahasiswa->Nim }}">Nilai</a>
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger">Delete</button>
