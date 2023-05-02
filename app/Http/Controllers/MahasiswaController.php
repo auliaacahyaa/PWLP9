@@ -137,7 +137,7 @@ class MahasiswaController extends Controller
         $mahasiswa->save();
    
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Diupdate');
+        return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Diupdate');
     }
 
     /**
