@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('mahasiswa', MahasiswaController::class);
-Route::get('mahasiswas/nilai/{Nim}', [MahasiswaController::class, 'nilai']);
+Route::get('mahasiswa/nilai/{Nim}', [MahasiswaController::class, 'nilai']);
+Route::resource('articles', ArticleController::class);
+Route::get('/articles/cetak_pdf', [ArticleController::class, 'cetak_pdf']);
+Route::get('/nilai/{mahasiswa_id}/cetak_pdf', [MahasiswaController::class, 'cetak_pdf'])->name('cetak_pdf');

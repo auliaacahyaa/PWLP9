@@ -9,20 +9,6 @@
             </center>
         </div>
     </div>
-    <!-- <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Nim: <br>
-            <span class="badge badge-primary badge-pill">{{$Mahasiswa->Nim}}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Nama: <br>
-            <span class="badge badge-primary badge-pill"><br> {{$Mahasiswa->Nama}}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Kelas: <br>
-            <span class="badge badge-primary badge-pill">{{$Mahasiswa->kelas->nama_kelas}}</span>
-        </li>
-    </ul> -->
 
     <ul class="list-group">
         <li class="list-group-item"><b>Nim : </b>{{$Mahasiswa->Nim}}</li>
@@ -30,11 +16,6 @@
         <li class="list-group-item"><b>Kelas : </b>{{$Mahasiswa->kelas->nama_kelas}}</li>
     </ul>
     <br><br><br>
-    <!-- <ul class="list-group list-group-flush text-left mb-4">
-        <li class="list-group-item"><b>Nim : </b>{{$Mahasiswa->Nim}}</li>
-        <li class="list-group-item"><b>Nama : </b>{{$Mahasiswa->Nama}}</li>
-        <li class="list-group-item"><b>Kelas : </b>{{$Mahasiswa->kelas->nama_kelas}}</li>
-    </ul> -->
 
 </div>
 
@@ -54,4 +35,5 @@
     </tr>
     @endforeach
 </table>
+<center><a class="btn btn-success btn-lg" href="{{ route('cetak_pdf', $Mahasiswa->Nim) }}">Cetak ke PDF</a></center>
 @endsection

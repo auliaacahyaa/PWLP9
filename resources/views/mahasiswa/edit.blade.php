@@ -21,26 +21,27 @@
                 </ul>
             </div> 
         @endif
-        <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->Nim) }}" id="myForm">
+        <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->Nim) }}" id="myForm" enctype="multipart/form-data">
         
         @csrf
         @method('PUT')
         <div class="form-group">
             <label for="Nim">Nim</label>
-            <input type="text" name="Nim" class="formcontrol" id="Nim" value="{{ $Mahasiswa->Nim }}" ariadescribedby="Nim" >
+            <input type="text" name="Nim" class="form-control" id="Nim" value="{{ $Mahasiswa->Nim }}" ariadescribedby="Nim" >
         </div>
         <div class="form-group">
             <label for="Nama">Nama</label>
-            <input type="Nama" name="Nama" class="formcontrol" id="Nama" value="{{ $Mahasiswa->Nama }}" ariadescribedby="Nama" >
+            <input type="Nama" name="Nama" class="form-control" id="Nama" value="{{ $Mahasiswa->Nama }}" ariadescribedby="Nama" >
+        </div>
+        <div class="form-group">
+            <label for="image">Foto</label>
+            <input type="File" name="image" class="form-control" required="requires" value="{{ $Mahasiswa->Foto }}" >
+            <img width="100px" src="{{asset('storage/'.$Mahasiswa->Foto)}}">
         </div>
         <div class="form-group">
             <label for="Tanggal_Lahir">Tanggal Lahir</label>
-            <input type="date" name="Tanggal_Lahir" class="formcontrol" id="Tanggal_Lahir" value="{{ $Mahasiswa->Tanggal_Lahir }}" ariadescribedby="Tanggal_Lahir" >
+            <input type="date" name="Tanggal_Lahir" class="form-control" id="Tanggal_Lahir" value="{{ $Mahasiswa->Tanggal_Lahir }}" ariadescribedby="Tanggal_Lahir" >
         </div>
-        <!-- <div class="form-group">
-            <label for="Kelas">Kelas</label>
-            <input type="Kelas" name="Kelas" class="formcontrol" id="Kelas" aria-describedby="password" >
-        </div> -->
         <div class="form-group">
             <label for="kelas">Kelas</label>
             <select name ="kelas" class="form-control">
@@ -51,15 +52,15 @@
         </div>
         <div class="form-group">
             <label for="Jurusan">Jurusan</label>
-            <input type="Jurusan" name="Jurusan" class="formcontrol" id="Jurusan" value="{{ $Mahasiswa->Jurusan }}" ariadescribedby="Jurusan" >
+            <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->Jurusan }}" ariadescribedby="Jurusan" >
         </div>
         <div class="form-group">
             <label for="No_Handphone">No_Handphone</label>
-            <input type="No_Handphone" name="No_Handphone" class="formcontrol" id="No_Handphone" value="{{ $Mahasiswa->No_Handphone }}" ariadescribedby="No_Handphone" >
+            <input type="No_Handphone" name="No_Handphone" class="form-control" id="No_Handphone" value="{{ $Mahasiswa->No_Handphone }}" ariadescribedby="No_Handphone" >
         </div>
         <div class="form-group">
             <label for="Email">Email</label>
-            <input type="Email" name="Email" class="formcontrol" id="Email" value="{{ $Mahasiswa->Email }}" ariadescribedby="Email" >
+            <input type="Email" name="Email" class="form-control" id="Email" value="{{ $Mahasiswa->Email }}" ariadescribedby="Email" >
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
